@@ -6,7 +6,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'very-secure' 
+    SECRET_KEY = 'very-secure'
 
 
 class ProductionConfig(Config):
