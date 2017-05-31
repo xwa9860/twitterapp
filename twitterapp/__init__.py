@@ -1,12 +1,14 @@
-import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import os
+
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
-from app.models import model
-#from app.views import view
+twitter_db = SQLAlchemy(app)
+
+from twitterapp.views import view
+from twitterapp.models import model
 
