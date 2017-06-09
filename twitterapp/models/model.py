@@ -16,7 +16,7 @@ hashtag_user = Table('hashtag_user',
                      Column('hashtag_id', Integer,
                             ForeignKey('hashtag.id'), nullable=False),
                      Column('user_id', Integer,
-                            ForeignKey('user.id'), nullable=False))
+                            ForeignKey('twitteruser.id'), nullable=False))
 
 tweet_word = Table('tweet_word',
                    Base.metadata,
@@ -30,7 +30,7 @@ class Hashtag(Base):
     __tablename__ = 'hashtag'
     id = Column(Integer, primary_key=True)
     hashtag = Column(String(200), nullable=False)
-    users = relationship('User', backref='hashtags',
+    users = relationship('Twitteruser', backref='hashtags',
                          secondary='hashtag_user')
     tweets = relationship('Tweet', backref='hashtags',
                           secondary='hashtag_tweet')
@@ -44,9 +44,9 @@ class Tweet(Base):
     id = Column(Integer, primary_key=True)
     tweet = Column(String(300), nullable=False)
     tid = Column(String(100), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('twitteruser.id'), nullable=False)
     coordinates = Column(String(50), nullable=True)
-    user = relationship('User', backref='tweets')
+    user = relationship('Twitteruser', backref='tweets')
     words = relationship('Word', backref='tweets', secondary=tweet_word)
     created_at = Column(String(100), nullable=False)
     data = Column(Text, nullable=False)
@@ -55,14 +55,14 @@ class Tweet(Base):
         return '<Tweet {}>'.format(self.tid)
 
 
-class User(Base):
-    __tablename__ = 'user'
+class Twitteruser(Base):
+    __tablename__ = 'twitteruser'
     id = Column(Integer, primary_key=True)
     screen_name = Column(String(100), nullable=False)
     uid = Column(String(50), nullable=False)
 
     def __repr__(self):
-        return '<User {}>'.format(self.uid)
+        return '<Twitteruser {}>'.format(self.uid)
 
 
 class Word(Base):
@@ -71,4 +71,4 @@ class Word(Base):
     word = Column(String(100), nullable=False)
 
     def __repr__(self):
-        return '<User {}>'.format(self.id)
+        return '<TwitterUser {}>'.format(self.id)

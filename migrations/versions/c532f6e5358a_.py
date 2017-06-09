@@ -1,13 +1,13 @@
 """empty message
 
-Revision ID: cf940e307c48
+Revision ID: c532f6e5358a
 Revises: None
-Create Date: 2017-05-30 21:00:43.436615
+Create Date: 2017-06-07 15:23:07.141028
 
 """
 
 # revision identifiers, used by Alembic.
-revision = 'cf940e307c48'
+revision = 'c532f6e5358a'
 down_revision = None
 
 from alembic import op
@@ -21,7 +21,7 @@ def upgrade():
     sa.Column('hashtag', sa.String(length=200), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('user',
+    op.create_table('twitteruser',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('screen_name', sa.String(length=100), nullable=False),
     sa.Column('uid', sa.String(length=50), nullable=False),
@@ -36,7 +36,7 @@ def upgrade():
     sa.Column('hashtag_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['hashtag_id'], ['hashtag.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], )
+    sa.ForeignKeyConstraint(['user_id'], ['twitteruser.id'], )
     )
     op.create_table('tweet',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -46,7 +46,7 @@ def upgrade():
     sa.Column('coordinates', sa.String(length=50), nullable=True),
     sa.Column('created_at', sa.String(length=100), nullable=False),
     sa.Column('data', sa.Text(), nullable=False),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['twitteruser.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('hashtag_tweet',
@@ -71,6 +71,6 @@ def downgrade():
     op.drop_table('tweet')
     op.drop_table('hashtag_user')
     op.drop_table('word')
-    op.drop_table('user')
+    op.drop_table('twitteruser')
     op.drop_table('hashtag')
     # ### end Alembic commands ###

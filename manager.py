@@ -11,6 +11,7 @@ from twitterapp import app, twitter_db
 app.config.from_object(os.environ['APP_SETTINGS'])
 migrate = Migrate(app, twitter_db)
 manager = Manager(app)
+
 # add the db command to the manager, so that we can run the migration from the command line
 manager.add_command('db', MigrateCommand)
 

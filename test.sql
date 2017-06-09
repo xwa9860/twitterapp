@@ -1,0 +1,2 @@
+DROP DATABASE tweetsql;
+CREATE DATABASE tweetsql;

@@ -7,9 +7,21 @@ from twitterapp.database import db_crud
 
 
 class TwitterDataListener(StreamListener):
+
+    def __init__(self, api=None):
+        super(TwitterDataListener, self).__init__()
+        self.num_tweets = 0
+
+
     def on_status(self, data):
         #try:
-        db_crud.add_status_to_db(data)
+        self.num_tweets += 1
+        if self.num_tweets < 2:
+            db_crud.add_status_to_db(data)
+            return True
+        else:
+            print('got 10 tweets, stopping the stream')
+            return False
         #except:
         #    print('data logging error')
         #return True
@@ -27,6 +39,9 @@ class TwitterDataStreamer:
                                    config.ACCESS_SECRET)
         self.api = API(self.auth)
 
-    def stream(self, keyword):
+    def stream(self, keywords):
+        '''
+        keywords: a list of keywords
+        '''
         stream = Stream(self.auth, TwitterDataListener())
-        stream.filter(track=keyword)
+        stream.filter(track=keywords)
