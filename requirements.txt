@@ -12,7 +12,6 @@ Jinja2==2.9.6
 jsonify==0.5
 Mako==1.0.6
 MarkupSafe==1.0
-nltk==3.2.4
 oauthlib==2.0.2
 packaging==16.8
 psycopg2==2.6.1
