@@ -1,3 +1,4 @@
 *.pyc
 twitterenv
 __pycache__/
+migrations/
