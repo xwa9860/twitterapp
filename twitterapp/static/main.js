@@ -17,7 +17,7 @@
     $http.post('/start', {"keyword": userInput}).
         success(function(results) {
           $log.log(results);
-          getTweets(results);
+          //getTweets(results);
 
         }).
         error(function(error) {
