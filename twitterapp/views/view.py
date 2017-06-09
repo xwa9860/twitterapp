@@ -21,7 +21,7 @@ def get_tweets():
     # get 'keyword' from user
     data = json.loads(request.data.decode())
     keyword = data["keyword"]
-    print(keyword)
+    print('got keyword from the user %s' % keyword)
     # start job
     job = q.enqueue_call(func=fetch_and_record_tweets,
                          args=([keyword],),

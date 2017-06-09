@@ -8,6 +8,7 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'very-secure'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    print('database uri is %r' %SQLALCHEMY_DATABASE_URI)
     # this is set in the .env file
 
 
