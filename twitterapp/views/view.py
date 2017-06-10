@@ -15,8 +15,6 @@ import json
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
-
-
 @app.route('/start', methods=['POST'])
 def get_tweets():
     # get 'keyword' from user

@@ -17,7 +17,7 @@
     $http.post('/start', {"keyword": userInput}).
         success(function(results) {
           $log.log(results);
-          //getTweets(results);
+          getTweets(results);
 
         }).
         error(function(error) {
@@ -26,29 +26,29 @@
 
     };
 
-    //function getTweets(jobID) {
+    function getTweets(jobID) {
 
-    //  var timeout = "";
+      var timeout = "";
 
-    //  var poller = function() {
-    //    // fire another request
-    //    $http.get('/results/'+jobID).
-    //      success(function(data, status, headers, config) {
-    //        if(status === 202) {
-    //          $log.log(data, status);
-    //        } else if (status === 200){
-    //          $log.log(data);
-    //          $scope.tweets = data;
-    //          $timeout.cancel(timeout);
-    //          return false;
-    //        }
-    //        // continue to call the poller() function every 2 seconds
-    //        // until the timeout is cancelled
-    //        timeout = $timeout(poller, 2000);
-    //      });
-    //  };
-    //  poller();
-    //}
+      var poller = function() {
+        // fire another request
+        $http.get('/results/'+jobID).
+          success(function(data, status, headers, config) {
+            if(status === 202) {
+              $log.log(data, status);
+            } else if (status === 200){
+              $log.log(data);
+              $scope.tweets = data;
+              $timeout.cancel(timeout);
+              return false;
+            }
+            // continue to call the poller() function every 2 seconds
+            // until the timeout is cancelled
+            timeout = $timeout(poller, 2000);
+          });
+      };
+      poller();
+    }
 
     }
   ]);
