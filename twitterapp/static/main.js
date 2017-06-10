@@ -14,15 +14,15 @@
       var userInput = $scope.keyword;
 
     // fire the API request
-    //$http.post('/start', {"keyword": userInput}).
-    //    success(function(results) {
-    //      $log.log(results);
-    //      //getTweets(results);
+    $http.post('/start', {"keyword": userInput}).
+        success(function(results) {
+          $log.log(results);
+          //getTweets(results);
 
-    //    }).
-    //    error(function(error) {
-    //      $log.log(error);
-    //    });
+        }).
+        error(function(error) {
+          $log.log(error);
+        });
 
     };
 
@@ -50,7 +50,7 @@
     //  poller();
     //}
 
-    //}
+    }
   ]);
 
 }());
