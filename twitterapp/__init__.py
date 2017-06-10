@@ -7,7 +7,7 @@ from worker import conn
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 print(os.environ['APP_SETTINGS'])
 
 twitter_db = SQLAlchemy(app)
