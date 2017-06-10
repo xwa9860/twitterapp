@@ -1,4 +1,3 @@
 #!/bin/bash
-gunicorn app:app
-# gunicorn app:app --daemon
-# python worker.py
+gunicorn run:app --daemon
+python worker.py
