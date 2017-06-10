@@ -4,9 +4,9 @@ from sqlalchemy import desc
 from twitterapp.services import twitterstream
 from twitterapp import app
 from twitterapp.models import model
-from twitterapp import q
-from rq.job import Job
-from worker import conn
+#from twitterapp import q
+#from rq.job import Job
+#from worker import conn
 import time
 import json
 
