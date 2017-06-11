@@ -16,11 +16,12 @@ class TwitterDataListener(StreamListener):
     def on_status(self, data):
         #try:
         self.num_tweets += 1
-        if self.num_tweets < 2:
+        nb_tweets = 1
+        if self.num_tweets < nb_tweets+1:
             db_crud.add_status_to_db(data)
             return True
         else:
-            print('got 10 tweets, stopping the stream')
+            print('got %d tweets, stopping the stream' % nb_tweets)
             return False
         #except:
         #    print('data logging error')
