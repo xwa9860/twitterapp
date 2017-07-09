@@ -1,0 +1,19 @@
+{
+  "name": "twitterapp",
+  "version": "1.0.0",
+  "description": "python manage.py db init python manage.py db migrate python manage.py db upgrade",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xwa9860/twitterapp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xwa9860/twitterapp/issues"
+  },
+  "homepage": "https://github.com/xwa9860/twitterapp#readme"
+}

@@ -55,3 +55,8 @@ coverage.xml
 docs/_build/
 
 *.DS_Store
+
+migrations/
+twitterapp/include/
+twitterapp/pip-selfcheck.json
+twitterapp/dump.rdb
