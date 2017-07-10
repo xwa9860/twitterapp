@@ -16,7 +16,7 @@ class TwitterDataListener(StreamListener):
     def on_status(self, data):
         #try:
         self.num_tweets += 1
-        nb_tweets = 1
+        nb_tweets = 100
         if self.num_tweets < nb_tweets+1:
             db_crud.add_status_to_db(data)
             return True

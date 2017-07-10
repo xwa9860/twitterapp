@@ -41,14 +41,9 @@ def fetch_and_record_tweets(keywords):
     return 'job done'
 
 
-@app.route("/results/<job_key>", methods=['GET'])
-def get_results(job_key):
-    job = Job.fetch(job_key, connection=conn)
-    if job.is_finished:
-        print('job finished')
-        cols = ['tid', 'tweet']
-        new_tweets = model.Tweet.query.order_by(desc(model.Tweet.id)).limit(2).all()
-        res = [{col: getattr(d, col) for col in cols} for d in new_tweets]
-        return jsonify(result=res), 200
-    else:
-        return "Nay!", 202
+@app.route("/results", methods=['GET'])
+def get_results():
+  cols = ['tid', 'tweet']
+  new_tweets = model.Tweet.query.order_by(desc(model.Tweet.id)).limit(10).all()
+  res = [{col: getattr(d, col) for col in cols} for d in new_tweets]
+  return jsonify(result=res), 200
