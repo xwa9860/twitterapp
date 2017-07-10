@@ -45,4 +45,4 @@ class TwitterDataStreamer:
         keywords: a list of keywords
         '''
         stream = Stream(self.auth, TwitterDataListener())
-        stream.filter(track=keywords)
+        stream.filter(languages=["en"], track=keywords)

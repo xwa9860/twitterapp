@@ -9,19 +9,20 @@ from sqlalchemy.orm.exc import MultipleResultsFound
 def add_status_to_db(status, db=twitter_db):
     status = status._json
 
+    print(status)
     # add user to database
     uid = status['user']['id']
     u = Twitteruser.query.filter_by(uid=str(uid)).first()
     if not u:
         print('add user to database %s' % twitter_db)
         u = Twitteruser(screen_name=status['user']['screen_name'],
-                 uid=uid)
+                        uid=uid)
         db.session.add(u)
         db.session.commit()
     else:
         print('user exists')
 
-    # add tweet to database
+    # add tweet and its words to database
     tw = Tweet(tweet=status['text'], tid=status['id'], user_id=u.id,
                created_at=status['created_at'], data=json.dumps(status))
 

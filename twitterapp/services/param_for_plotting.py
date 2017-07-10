@@ -1,0 +1,2 @@
+from twitterapp.services import word_frequency
+word_frequency.count_word_frequency

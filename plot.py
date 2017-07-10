@@ -1,0 +1,40 @@
+import networkx as nx
+from twitterapp.models.model import Twitteruser, Word, Tweet, Hashtag
+import matplotlib
+matplotlib.use('TkAgg')
+
+
+
+def graph_add_node(n, g, t):
+    if g.has_node(n):
+        g.node[n]['weight']+=1
+    else:
+        g.add_node(n)
+        g.node[n]['label'] = n
+        g.node[n]['weight'] = 1
+        g.node[n]['type'] = t
+ 
+def graph_add_edge(n1, n2, g):
+    if g.has_edge(n1, n2):
+        g[n1][n2]['weight']+=1
+    else:
+        g.add_edge(n1,n2)
+        g[n1][n2]['weight']=1
+
+graph = nx.Graph()
+
+# iterate through every tweet, storing each tweet in t
+for t in Tweet.query.all():
+    # add t to the graph
+    graph_add_node(t.tweet, graph, 'tweet')
+    # now iterate through all the words in t, storing each word in w
+    for w in t.words:
+        # looking for hashtags (there's a better way to do this)
+        if w.word[0] == '#':
+            graph_add_node(w.word, graph, 'hashtag')
+            graph_add_edge(t.tweet, w.word, graph)
+
+# because it ends up in the file name for the GEXF output file
+nx.draw(graph)
+matplotlib.pyplot.show()
+
