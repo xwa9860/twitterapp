@@ -71,4 +71,4 @@ class Word(Base):
     word = Column(String(100), nullable=False)
 
     def __repr__(self):
-        return '<TwitterUser {}>'.format(self.id)
+        return '<Word {}>'.format(self.id)
