@@ -10,6 +10,7 @@ from rq.job import Job
 from worker import conn
 import time
 import json
+import random
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -46,4 +47,10 @@ def get_results():
   cols = ['tid', 'tweet']
   new_tweets = model.Tweet.query.order_by(desc(model.Tweet.id)).limit(10).all()
   res = [{col: getattr(d, col) for col in cols} for d in new_tweets]
+  return jsonify(result=res), 200
+
+@app.route("/words", methods=['GET'])
+def get_words():
+  words = ['putin', 'nuclear', 'trump', 'korea', 'north korea', 'U.S.', 'war', 'energy', 'plants', 'FBI']
+  res = [{'text': word, 'size': random.randint(10, 100)} for word in words]
   return jsonify(result=res), 200
