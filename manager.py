@@ -1,6 +1,6 @@
 '''
 set up a manager
-to provide supoort for 
+to provide supoort for
 running python shell scripts to set up  and update database
 '''
 import os
@@ -12,7 +12,8 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 migrate = Migrate(app, twitter_db)
 manager = Manager(app)
 
-# add the db command to the manager, so that we can run the migration from the command line
+# add the db command to the manager, so that we can run the migration
+# from the command line
 manager.add_command('db', MigrateCommand)
 
 if __name__ == '__main__':

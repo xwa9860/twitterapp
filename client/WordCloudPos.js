@@ -1,9 +1,10 @@
+
 import * as d3 from 'd3';
 import React from 'react';
 import cloud from 'd3-cloud';
 import fetch from 'isomorphic-fetch';
 
-class WordCloud extends React.Component {
+class WordCloudPos extends React.Component {
   constructor(props) {
     super(props);
 
@@ -52,7 +53,7 @@ class WordCloud extends React.Component {
 
   update(words) {
     cloud()
-      .size([500, 500])
+      .size([1000, 500])
       .words(words)
       .padding(5)
       .rotate(function() {
@@ -67,9 +68,9 @@ class WordCloud extends React.Component {
   }
 
   fetchWords() {
-    fetch('/words').then(response => response.json()).then(json => {
+    fetch('/pos_words').then(response => response.json()).then(json => {
       this.update(json.result);
-      setTimeout(() => this.fetchWords(), 1000);
+      setTimeout(() => this.fetchWords(), 4000);
     });
   }
 
@@ -78,10 +79,10 @@ class WordCloud extends React.Component {
     this.svg = d3
       .select('.word-cloud-container')
       .append('svg')
-      .attr('width', 500)
+      .attr('width', 1000)
       .attr('height', 500)
       .append('g')
-      .attr('transform', 'translate(250,250)');
+      .attr('transform', 'translate(500,250)');
     this.fetchWords();
   }
 
@@ -90,4 +91,4 @@ class WordCloud extends React.Component {
   }
 }
 
-export default WordCloud;
+export default WordCloudPos;

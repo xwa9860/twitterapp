@@ -61,6 +61,9 @@ docs/_build/
 migrations/
 twitterapp/include/
 twitterapp/pip-selfcheck.json
-twitterapp/dump.rdb
+*.rdb
+*.pkl
+*.hdf
+*.sql
 
 node_modules/

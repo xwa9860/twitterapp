@@ -1,5 +1,5 @@
 from twitterapp import twitter_db
-from sqlalchemy import Column, ForeignKey, Integer, String, Boolean, Table, Text
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, Text
 from sqlalchemy.orm import relationship
 
 Base = twitter_db.Model
@@ -50,10 +50,9 @@ class Tweet(Base):
     words = relationship('Word', backref='tweets', secondary=tweet_word)
     created_at = Column(String(100), nullable=False)
     data = Column(Text, nullable=False)
-    retweet_count = Column(Integer, nullable=True)
-    truncated = Column(Boolean, nullable=True)
-    sentiment = Column(String(50), nullable=True)
-    topic = Column(String(50), nullable=True)
+    # retweet_count = Column(Integer, nullable=True)
+    # sentiment = Column(String(50), nullable=True)
+    # topic = Column(String(50), nullable=True)
 
     def __repr__(self):
         return '<Tweet {}>'.format(self.tid)
@@ -64,7 +63,7 @@ class Twitteruser(Base):
     id = Column(Integer, primary_key=True)
     screen_name = Column(String(100), nullable=False)
     uid = Column(String(50), nullable=False)
-    follower_count = Column(Integer, nullable=False)
+    # follower_count = Column(Integer, nullable=False)
 
     def __repr__(self):
         return '<Twitteruser {}>'.format(self.uid)

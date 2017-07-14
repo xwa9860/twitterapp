@@ -3,7 +3,7 @@ from tweepy import API
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
 import twitterapp.services.twitter_config as config
-from twitterapp.database import db_crud
+from twitterapp.models import db_crud
 
 
 class TwitterDataListener(StreamListener):
@@ -12,20 +12,15 @@ class TwitterDataListener(StreamListener):
         super(TwitterDataListener, self).__init__()
         self.num_tweets = 0
 
-
     def on_status(self, data):
-        #try:
         self.num_tweets += 1
-        nb_tweets = 100
+        nb_tweets = 10000
         if self.num_tweets < nb_tweets+1:
             db_crud.add_status_to_db(data)
             return True
         else:
             print('got %d tweets, stopping the stream' % nb_tweets)
             return False
-        #except:
-        #    print('data logging error')
-        #return True
 
     def on_error(self, status):
         print(status)

@@ -13,5 +13,5 @@ print(os.environ['APP_SETTINGS'])
 twitter_db = SQLAlchemy(app)
 q = Queue(connection=conn)
 
-from twitterapp.views import view
 from twitterapp.models import model
+from twitterapp.views import view
